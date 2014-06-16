@@ -12,9 +12,8 @@ var StormpathStrategy = require('passport-stormpath');
 var session = require('express-session');
 var flash = require('connect-flash');
 
-var routes = require('./routes/index');
+var index_routes = require('./routes/index');
 var users = require('./routes/users');
-
 var app = express();
 
 //added dependencies:
@@ -47,8 +46,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-app.use('/', routes);
-app.use('/users', users);
+//specify routes here:
+
+app.use('/', index_routes);
+app.use('/', auth_routes);
+
+
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
